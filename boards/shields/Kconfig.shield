@@ -1,8 +1,8 @@
 # Copyright (c) 2024 Lynnlee
 # SPDX-License-Identifier: MIT
 
-config SHIELD_NEWTON_LEFT
+config SHIELD_CURIE_LEFT
 def_bool $(shields_list_contains,curie_left)
 
-config SHIELD_NEWTON_RIGHT
+config SHIELD_CURIE_RIGHT
 def_bool $(shields_list_contains,curie_right)
