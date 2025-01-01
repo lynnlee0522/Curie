@@ -20,10 +20,10 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: newton_left
+    shield: curie_left
     snippet: zmk-usb-logging
   - board: nice_nano_v2
-    shield: newton_right
+    shield: curie_right
     snippet: zmk-usb-logging
   - board: nice_nano_v2
     shield: settings_reset
