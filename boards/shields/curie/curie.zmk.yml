@@ -1,0 +1,19 @@
+file_format: "1"
+id: curie
+name: Curie
+type: shield
+url: https://github.com/lynnlee0522/Curie
+requires:
+  - pro_micro
+exposes:
+  - i2c_oled
+features:
+  - keys
+  - display
+  - encoder
+  - underglow
+  - studio
+  - pointer
+siblings:
+  - curie_left
+  - curie_right
