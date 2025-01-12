@@ -1,48 +1,28 @@
-&pinctrl {
-	i2c0_default: i2c0_default {
-		group1 {
-			psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
-			<NRF_PSEL(TWIM_SCL, 0, 20)>;
-		};
-	};
+
+&spi1 {
+	cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;// CS
+	status = "okay";
 	
-	i2c0_sleep: i2c0_sleep {
-		group1 {
-			psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
-			<NRF_PSEL(TWIM_SCL, 0, 20)>;
-			low-power-enable;
-		};
+	lcd1: lcd1@0 {
+		status = "okay";
+		compatible = "waveshare,gc9a01a";
+		spi-max-frequency = <2000000>;
+		reg = <0>;
+		width = <240>;
+		height = <240>;
+		cmd-data-gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>;// DC
+		reset-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+		backlight-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+		pixel-format = <0>;
+		// display-inversion;
+		rotation = <0>;
 	};
 };
 
-&i2c0 {
-	status = "okay";
-	compatible = "nordic,nrf-twim";
-	pinctrl-0 = <&i2c0_default>;
-	pinctrl-1 = <&i2c0_sleep>;
-	pinctrl-names = "default", "sleep";
-	clock-frequency = <100000>;
-	
-	oled: ssd1306@3c {
-		compatible = "solomon,ssd1306fb";
-		reg = <0x3c>;
-		width = <128>;
-		height = <32>;
-		segment-offset = <0>;
-		page-offset = <0>;
-		display-offset = <0>;
-		multiplex-ratio = <31>;
-		segment-remap;
-		com-invdir;
-		com-sequential;
-		inversion-on;
-		prechargep = <0x22>;
-	};
-};
 
 
 / {
 	chosen {
-		zephyr,display = &oled;
+		zephyr,display = &lcd1;
 	};
 };
