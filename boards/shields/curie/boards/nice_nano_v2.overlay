@@ -1,28 +1,53 @@
+/*
+ * nRF52840_mdk            ST7789V (240x240)
+ *
+ * P0.28 (RESET)            RES
+ * P0.29 (D5)            DC (DATA/CMD)
+ * P0.27 (SCK)            SCL
+ * P0.26 (MOSI)            SDA
+ */
 
-&spi1 {
-	cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;// CS
-	status = "okay";
-	
-	lcd1: lcd1@0 {
-		status = "okay";
-		compatible = "waveshare,gc9a01a";
-		spi-max-frequency = <2000000>;
-		reg = <0>;
-		width = <240>;
-		height = <240>;
-		cmd-data-gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>;// DC
-		reset-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-		backlight-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-		pixel-format = <0>;
-		// display-inversion;
-		rotation = <0>;
+&pinctrl {
+	spi0_default: spi0_default {
+		group1 {
+			psels = <NRF_PSEL(SPIM_SCK, 1, 13)>,
+			        <NRF_PSEL(SPIM_MOSI, 0, 10)>,
+			        <NRF_PSEL(SPIM_MISO, 1, 11)>;
+		};
+	};
+
+	spi0_sleep: spi0_sleep {
+		group1 {
+			psels = <NRF_PSEL(SPIM_SCK, 1, 13)>,
+			        <NRF_PSEL(SPIM_MOSI, 0, 10)>,
+			        <NRF_PSEL(SPIM_MISO, 1, 11)>;
+			low-power-enable;
+		};
 	};
 };
 
+&spi0 {
+	compatible = "nordic,nrf-spim";
+	status = "okay";
+	pinctrl-0 = <&spi0_default>;
+	pinctrl-1 = <&spi0_sleep>;
+	pinctrl-names = "default", "sleep";
+	cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
 
+	test_spi_gc9x01x: gc9x01x@0 {
+		compatible = "galaxycore,gc9x01x";
+		reg = <0>;
+		spi-max-frequency = <100000000>;
+		cmd-data-gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
+		pixel-format = <16>;
+		width = <240>;
+		height = <240>;
+	};
+};
 
 / {
 	chosen {
-		zephyr,display = &lcd1;
+		zephyr,display = &test_spi_gc9x01x;
 	};
 };
