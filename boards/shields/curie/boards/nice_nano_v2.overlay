@@ -11,38 +11,38 @@
 	spi0_default: spi0_default {
 		group1 {
 			psels = <NRF_PSEL(SPIM_SCK, 1, 13)>,
-			        <NRF_PSEL(SPIM_MOSI, 0, 10)>;
+					<NRF_PSEL(SPIM_MOSI, 0, 10)>;
 		};
 	};
 
 	spi0_sleep: spi0_sleep {
 		group1 {
 			psels = <NRF_PSEL(SPIM_SCK, 1, 13)>,
-			        <NRF_PSEL(SPIM_MOSI, 0, 10)>;
+					<NRF_PSEL(SPIM_MOSI, 0, 10)>;
 			low-power-enable;
 		};
 	};
 };
 
 // &spi0 {
-// 	compatible = "nordic,nrf-spim";
-// 	status = "okay";
-// 	pinctrl-0 = <&spi0_default>;
-// 	pinctrl-1 = <&spi0_sleep>;
-// 	pinctrl-names = "default", "sleep";
-// 	cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
+	//     compatible = "nordic,nrf-spim";
+	//     status = "okay";
+	//     pinctrl-0 = <&spi0_default>;
+	//     pinctrl-1 = <&spi0_sleep>;
+	//     pinctrl-names = "default", "sleep";
+	//     cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
 
-// 	spi_gc9x01x: gc9x01x@0 {
-// 		status = "okay";
-// 		compatible = "galaxycore,gc9x01x";
-// 		reg = <0>;
-// 		spi-max-frequency = <100000000>;
-// 		cmd-data-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-// 		reset-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
-// 		pixel-format = <16>;
-// 		width = <240>;
-// 		height = <240>;
-// 	};
+	//     spi_gc9x01x: gc9x01x@0 {
+		//         status = "okay";
+		//         compatible = "galaxycore,gc9x01x";
+		//         reg = <0>;
+		//         spi-max-frequency = <100000000>;
+		//         cmd-data-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
+		//         reset-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
+		//         pixel-format = <16>;
+		//         width = <240>;
+		//         height = <240>;
+	//     };
 // };
 
 &spi0 {
@@ -52,7 +52,7 @@
 	pinctrl-1 = <&spi0_sleep>;
 	cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
 	pinctrl-names = "default", "sleep";
-	
+
 	st7789v: st7789v@0 {
 		compatible = "sitronix,st7789v";
 		spi-max-frequency = <20000000>;
@@ -71,18 +71,27 @@
 		lcm = <0x2c>;
 		colmod = <0x05>;
 		gamma = <0x01>;
-		porch-param = [0c 0c 00 33 33];
-		cmd2en-param = [5a 69 02 01];
-		pwctrl1-param = [a4 a1];
-		pvgam-param = [D0 04 0D 11 13 2B 3F 54 4C 18 0D 0B 1F 23];
-		nvgam-param = [D0 04 0C 11 13 2C 3F 44 51 2F 1F 1F 20 23];
-		ram-param = [00 F0];
-		rgb-param = [CD 08 14];
+		porch-param = [ 0c 0c 00 33 33  ];
+		cmd2en-param = [ 5a 69 02 01  ];
+		pwctrl1-param = [ a4 a1  ];
+		pvgam-param = [ D0 04 0D 11 13 2B 3F 54 4C 18 0D 0B 1F 23  ];
+		nvgam-param = [ D0 04 0C 11 13 2C 3F 44 51 2F 1F 1F 20 23  ];
+		ram-param = [ 00 F0  ];
+		rgb-param = [ CD 08 14  ];
 	};
+
 };
 
 / {
 	chosen {
 		zephyr,display = &st7789v;
+		zmk,display-led = &disp_led;
 	};
+	leds {
+        compatible = "gpio-leds";
+        disp_led: disp_led {
+            gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+            label = "Display LED";
+        };
+    };
 };
