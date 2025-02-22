@@ -3,15 +3,10 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: kevinpastor
-      url-base: https://github.com/kevinpastor
   projects:
     - import: app/west.yml
       name: zmk
       remote: zmkfirmware
-      revision: main
-    - name: nice-view-elemental
-      remote: kevinpastor
       revision: main
   self:
     path: config
