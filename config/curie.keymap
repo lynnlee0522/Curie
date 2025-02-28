@@ -55,8 +55,7 @@
 			//│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
 			&kp Z      &kp X      &kp C      &kp V      &kp B      &kp M      &kp COMMA  &kp DOT    &kp FSLH
 			//╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-			&kp Z      &kp X      &kp C      &kp V      &kp B          &kp SPACE  &lt 1 BSPC
-			//                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+			&kp N1      &kp N2      &kp N3 
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
