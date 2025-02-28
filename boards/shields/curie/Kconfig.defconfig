@@ -43,6 +43,8 @@ choice LV_COLOR_DEPTH
     default LV_COLOR_DEPTH_16
 endchoice
 
+# config LV_MEM_SIZE
+#     default (48U * 1024U) 
 
 endif # ZMK_DISPLAY
 

@@ -55,12 +55,12 @@
 
 	st7789v: st7789v@0 {
 		compatible = "sitronix,st7789v";
-		spi-max-frequency = <20000000>;
+		spi-max-frequency = <10000000>;
 		reg = <0>;
 		cmd-data-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
 		reset-gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
 		width = <240>;
-		height = <280>;
+		height = <320>;
 		x-offset = <0>;
 		y-offset = <0>;
 		vcom = <0x19>;
@@ -88,10 +88,51 @@
 		zmk,display-led = &disp_led;
 	};
 	leds {
-        compatible = "gpio-leds";
-        disp_led: disp_led {
-            gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-            label = "Display LED";
-        };
-    };
+		compatible = "gpio-leds";
+		disp_led: disp_led {
+			gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+			label = "Display LED";
+		};
+	};
+
 };
+
+// gpio_kbd_matrix {
+	//     compatible = "gpio-kbd-matrix";
+	//     row-gpios = <&gpio0 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+					   //                 <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+					   //                 <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+	//     col-gpios = <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+					   //                 <&gpio1 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+					   //                 <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+					   //                 <&gpio1 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+					   //                 <&gpio1 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+	//     col-drive-inactive;
+	//     settle-time-us = <0>;
+	//     no-ghostkey-check;
+// }
+//     keymap {
+	//         compatible = "input-keymap";
+	//         keymap = <
+	//             MATRIX_KEY(0, 0, INPUT_KEY_1)
+	//             MATRIX_KEY(0, 1, INPUT_KEY_2)
+	//             MATRIX_KEY(0, 2, INPUT_KEY_3)
+	//             MATRIX_KEY(1, 0, INPUT_KEY_4)
+	//             MATRIX_KEY(1, 1, INPUT_KEY_5)
+	//             MATRIX_KEY(1, 2, INPUT_KEY_6)
+	//             MATRIX_KEY(2, 0, INPUT_KEY_7)
+	//             MATRIX_KEY(2, 1, INPUT_KEY_8)
+	//             MATRIX_KEY(2, 2, INPUT_KEY_9)
+	//         >;
+	//         row-size = <3>;
+	//         col-size = <3>;
+//     };
+// };
+
+// lvgl_keypad: lvgl-keypad {
+	//     compatible = "zephyr,lvgl-keypad-input";
+	//     input = <&gpio_kbd_matrix>;
+	//     input-codes = <INPUT_KEY_LEFT INPUT_KEY_RIGHT INPUT_KEY_ENTER INPUT_KEY_ESC>;
+	//     lvgl-codes = <LV_KEY_LEFT LV_KEY_RIGHT LV_KEY_ENTER LV_KEY_ESC>;
+// };
+// ;
