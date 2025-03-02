@@ -1,12 +1,12 @@
 ---
 manifest:
   remotes:
-    - name: zmk_offical
+    - name: lynnlee0522
       url-base: https://github.com/lynnlee0522
   projects:
     - import: app/west.yml
-      name: curie
-      remote: zmk_offical
+      name: zmk_offical
+      remote: lynnlee0522
       revision: custom_screen
   self:
     path: config
