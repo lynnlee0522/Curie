@@ -65,7 +65,6 @@
 		input = <&qdec>;
 		status = "okay";
 	};
-	
 
 	// left_encoder: encoder_left {
 	// 	    compatible = "alps,ec11";
