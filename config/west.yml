@@ -7,6 +7,6 @@ manifest:
     - import: app/west.yml
       name: zmk_offical
       remote: lynnlee0522
-      revision: custom_screen
+      revision: main
   self:
     path: config
