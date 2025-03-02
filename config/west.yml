@@ -1,12 +1,12 @@
 ---
 manifest:
   remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/lynnlee0522/zmk_offical.git
+    - name: zmk_offical
+      url-base: https://github.com/lynnlee0522
   projects:
     - import: app/west.yml
-      name: zmk
-      remote: zmkfirmware
+      name: curie
+      remote: zmk_offical
       revision: custom_screen
   self:
     path: config
