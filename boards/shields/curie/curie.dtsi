@@ -66,6 +66,7 @@
 		status = "okay";
 	};
 
+	
 	// left_encoder: encoder_left {
 	// 	    compatible = "alps,ec11";
 	// 	    a-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
