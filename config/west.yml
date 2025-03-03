@@ -1,12 +1,12 @@
 ---
 manifest:
   remotes:
-    - name: lynnlee0522
-      url-base: https://github.com/lynnlee0522
+  name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
   projects:
-    - import: app/west.yml
-      name: zmk_offical
-      remote: lynnlee0522
+    - name: zmk_offical
+      url: https://github.com/lynnlee0522/zmk_offical
       revision: main
+      import: app/west.yml
   self:
     path: config
